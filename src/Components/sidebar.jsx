@@ -21,13 +21,13 @@ const SideBar = ({ setActiveTab, activeTab, role, setRole }) => {
             </div>
 
 
-            <div className="py-3 flex  items-center ml-2">
+            <div className={`py-3 flex  items-center ml-2 `}>
                 <FaHouse className="inline mr-2" />
-                <button onClick={() => setActiveTab("dashboard")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer ${activeTab == "dashboard" ? "text-blue-500" : "text-gray-700"}`}>Dashboard</button>
+                <button onClick={() => setActiveTab("dashboard")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-2 rounded-xl py-0.5 ${activeTab == "dashboard" ? "text-blue-600  bg-blue-100" : "text-gray-700 hover:bg-gray-100  "}`}>Dashboard</button>
             </div>
             <div className="py-3 flex  items-center ml-2">
                 <FaList className="inline mr-2" />
-                <button onClick={() => setActiveTab("transactions")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer ${activeTab == "transactions" ? "text-blue-500" : "text-gray-700"}`}>Transactions</button>
+                <button onClick={() => setActiveTab("transactions")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-2 rounded-xl py-0.5 ${activeTab == "transactions" ? "text-blue-500 bg-blue-100" : "text-gray-700 bg-gray-100"}`}>Transactions</button>
             </div>
             <div className="relative md:hidden flex items-center ml-2">
 
