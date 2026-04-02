@@ -1,17 +1,18 @@
 
 import { LuAlignJustify } from "react-icons/lu";
 import { FaSearch } from "react-icons/fa";
+import { FaUser, FaUserShield } from "react-icons/fa";
 const Navbar = ({ role, setRole, activeTab, setIsSidebarOpen }) => {
 
     return (
-        <nav className="px-4 md:px-5 py-4 flex flex-row justify-between bg-white shadow-2xl">
-            {activeTab == "dashboard" && <h1 className="font-bold text-3xl">
+        <nav className="px-4 md:px-5 py-4 flex flex-row justify-between bg-white shadow-2xl ">
+            {activeTab == "dashboard" && <h1 className="font-bold text-3xl pb-1">
                 <button onClick={() => setIsSidebarOpen(true)} className="cursor-pointer min-[768px]:hidden">
                     <LuAlignJustify size={25} className="mt-3" />
                 </button>
                 <span className="ml-5">Dashboard</span>
             </h1>}
-            {activeTab == "transactions" && <h1 className="font-bold text-3xl">
+            {activeTab == "transactions" && <h1 className="font-bold text-3xl pb-1">
                 <button onClick={() => setIsSidebarOpen(true)} className="cursor-pointer min-[768px]:hidden">
                     <LuAlignJustify size={25} className="mt-3" />
                 </button>
@@ -27,7 +28,7 @@ const Navbar = ({ role, setRole, activeTab, setIsSidebarOpen }) => {
                     className={`px-4 py-1.5 mr-1 rounded-full font-medium ${role === "user" ? "bg-blue-500 text-white" : "bg-gray-200 cursor-pointer"
                         }`}
                 >
-                    User
+                    <FaUser className="inline mb-1" /> User
                 </button>
 
                 <button
@@ -35,7 +36,7 @@ const Navbar = ({ role, setRole, activeTab, setIsSidebarOpen }) => {
                     className={`px-4 py-1.5 ml-1 rounded-full font-medium ${role === "admin" ? "bg-blue-500 text-white" : "bg-gray-200 cursor-pointer"
                         }`}
                 >
-                    Admin
+                    <FaUserShield className="inline mb-1" /> Admin
                 </button>
             </div>
 
