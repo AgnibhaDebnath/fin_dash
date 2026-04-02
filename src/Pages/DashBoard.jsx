@@ -2,7 +2,8 @@ import { useState } from "react";
 
 import Navbar from "../Components/navbar"
 import SideBar from "../Components/sidebar"
-
+import Cards from "../Components/Cards";
+import Charts from "../Components/charts";
 const DashBoard = () => {
     const [role, setRole] = useState("user");
     const [activeTab, setActiveTab] = useState("dashboard");
@@ -15,7 +16,11 @@ const DashBoard = () => {
                 <div className="hidden md:block w-60">
                     <SideBar setActiveTab={setActiveTab} activeTab={activeTab} />
                 </div>
-
+                {activeTab == "dashboard" && <>
+                    <Cards />
+                    <Charts />
+                </>
+                }
             </div>
 
             {isSidebarOpen && (
