@@ -8,7 +8,7 @@ const SideBar = ({ setActiveTab, activeTab, role, setRole }) => {
     const [isOpen, setIsOpen] = useState(false)
     return (
 
-        <aside className="w-60 left-0 border-t-2  bg-white shadow-2xl h-full flex flex-col  border-gray-400 p-4 ">
+        <aside className="w-60 left-0 fixed border-t-2  bg-white shadow-2xl h-[calc(100vh-4rem)] flex flex-col  border-gray-400 p-4 top-22">
             <div className="flex items-center gap-2 py-4 ">
                 <div className="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full font-bold">
                     <h1 className="font-bold text-2xl font-serif">F</h1>
@@ -27,7 +27,7 @@ const SideBar = ({ setActiveTab, activeTab, role, setRole }) => {
             </div>
             <div className="py-3 flex  items-center ml-2">
                 <FaList className="inline mr-2" />
-                <button onClick={() => setActiveTab("transactions")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-2 rounded-xl py-0.5 ${activeTab == "transactions" ? "text-blue-500 bg-blue-100" : "text-gray-700 bg-gray-100"}`}>Transactions</button>
+                <button onClick={() => setActiveTab("transactions")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-2 rounded-xl py-0.5 ${activeTab == "transactions" ? "text-blue-500 bg-blue-100" : "text-gray-700 hover:bg-gray-100"}`}>Transactions</button>
             </div>
             <div className="relative md:hidden flex items-center ml-2">
 
