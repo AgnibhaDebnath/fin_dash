@@ -2,7 +2,7 @@ import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
 import { FaBalanceScale } from "react-icons/fa";
 import { cards_data } from "../Data/CardsData";
-const Cards = ({ total_income, total_expense }) => {
+const Cards = ({ total_income, total_expense, monthly_expense_data }) => {
 
 
     return (
@@ -14,9 +14,22 @@ const Cards = ({ total_income, total_expense }) => {
 
                     {cards_data.map((card_data) => (
                         <article key={card_data.id} className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition h-full w-4/5 min-[667px]:w-full">
-                            <h2 className="text-gray-600"><span className="">{card_data.id == 1 ? <FaArrowUp className="inline mb-1 mr-1 text-green-500" /> : card_data.id == 2 ? <FaArrowDown className="inline mb-1 mr-1 text-red-500" /> : <FaBalanceScale className="inline mb-1 mr-1 text-blue-500" />}</span>{card_data.title}</h2>
-                            {card_data.id == 1 && <p className={`text-xl font-bold ml-4 ${card_data.color}`}>₹{total_income}</p>}
-                            {card_data.id == 2 && <p className={`text-xl font-bold ml-4 ${card_data.color}`}>₹{total_expense}</p>}
+                            <h2 className="text-gray-600"><span className="">{card_data.id == 1 ? <FaArrowUp className="inline mb-1 mr-1 text-green-500" /> : card_data.id == 2 ? <FaArrowDown className="inline mb-1 mr-1 text-red-500" /> : <FaBalanceScale className="inline mb-1 mr-1 text-blue-500" />}</span>{card_data.title}{monthly_expense_data.length != 0 ? `(Jan - Dec ${monthly_expense_data[0].year})` : ""}</h2>
+
+                            {card_data.id == 1 && total_income != 0 && <p className={`text-xl font-bold ml-4 ${card_data.color}`}>₹{total_income}</p>}
+
+                            {card_data.id == 1 && total_income == 0 && <>
+                                <p className={`text-xl font-bold ml-4 ${card_data.color}`}>₹{total_income}</p>
+                                <p className="ml-4">No data available</p>
+                            </>
+                            }
+
+                            {card_data.id == 2 && total_expense != 0 && <p className={`text-xl font-bold ml-4 ${card_data.color}`}>₹{total_expense}</p>}
+                            {card_data.id == 2 && total_expense == 0 && <>
+                                <p className={`text-xl font-bold ml-4 ${card_data.color}`}>₹{total_expense}</p>
+                                <p className="ml-4">No data available</p>
+                            </>}
+
                             {card_data.id == 3 && <p className={`text-xl font-bold ml-4 ${card_data.color}`}>₹{total_income - total_expense}</p>}
                         </article>))}
                 </section>
