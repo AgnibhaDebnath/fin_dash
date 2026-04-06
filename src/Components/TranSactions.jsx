@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import AddTransactionForm from "./AddTransactionForm";
-import { FaArrowUp, FaArrowDown, FaInbox, FaUtensils, FaShoppingCart, FaPlane, FaHeartbeat, FaMoneyCheckAlt, FaLaptopCode, FaFilm, FaChartLine, FaChartPie } from "react-icons/fa";
+import { FaArrowUp, FaArrowDown, FaInbox, FaUtensils, FaShoppingCart, FaPlane, FaHeartbeat, FaMoneyCheckAlt, FaLaptopCode, FaFilm, FaChartLine, FaChartPie, FaChevronDown } from "react-icons/fa";
 import Footer from "./footer";
 const Transactions = ({ role, transactions, setTransactions }) => {
     const [showForm, setShowForm] = useState(false)
@@ -27,17 +27,25 @@ const Transactions = ({ role, transactions, setTransactions }) => {
             <h1 className="text-3xl font-bold text-gray-700 h-10 pt-1">Transaction Details</h1>
             <article className="flex flex-col min-[491px]:flex-row  min-[491px]:items-center min-[950px]:w-3/5 min-[765px]:w-4/5 w-full justify-between gap-3 items-start">
                 <div className="flex flex-col items-center  min-[491px]:flex-row gap-3 my-3">
-                    <select value={selectedValue}
-                        onChange={e => {
-                            setSelectedValue(e.target.value);
-                            setCurrentPage(1)
-                        }}
-                        className="border-2 font-mono border-blue-500 rounded-lg px-2 py-1 w-full  block font-medium"
-                    >
-                        <option value="all">All</option>
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
-                    </select>
+                    <div className="w-full relative">
+                        <select value={selectedValue}
+                            onChange={e => {
+                                setSelectedValue(e.target.value);
+                                setCurrentPage(1)
+                            }}
+                            className="border-2 font-mono border-gray-400 rounded-lg px-4 appearance-none py-1.5 w-full  block font-extrabold cursor-pointer focus:outline-none
+    focus:ring-2 focus:ring-blue-500
+    focus:border-blue-500
+    hover:border-blue-400
+    transition-all duration-200 text-gray-700 shadow-sm sm:font-medium "
+                        >
+                            <option value="all">All</option>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                        <FaChevronDown className="absolute right-3 top-3 pointer-events-none" />
+                    </div>
+
                     <div className="relative">
                         <FaSearch className="absolute top-2.5 left-3" />
                         <input
@@ -48,7 +56,7 @@ const Transactions = ({ role, transactions, setTransactions }) => {
                             }}
                             type="text"
                             placeholder="Search category..."
-                            className="pl-8 py-1 rounded-full flex-1 border-2 font-semibold font-mono "
+                            className="pl-8 py-1 rounded-full flex-1 border-2 border-gray-400 font-semibold font-mono bg-gray-50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         />
                     </div>
                 </div>
