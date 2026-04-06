@@ -15,7 +15,7 @@ export const expenseCategories = [
 ];
 
 
-const generateTransactions = () => {
+export const generateTransactions = () => {
   const data = [];
   let id = 1;
 const year = Math.floor(Math.random() * (2030 - 2000 + 1)) + 2000;
@@ -59,5 +59,5 @@ const year = Math.floor(Math.random() * (2030 - 2000 + 1)) + 2000;
 };
 
 
-export const transactionsData = generateTransactions();
+
 // export const transactionsData = [];
