@@ -8,7 +8,7 @@ const SideBar = ({ setActiveTab, activeTab, role, setRole }) => {
     const [isOpen, setIsOpen] = useState(false)
     return (
 
-        <aside className="w-60 left-0 fixed border-t-2  bg-white shadow-2xl h-[calc(100vh-4rem)] flex flex-col  border-gray-400 p-4 top-22">
+        <aside className="w-60 left-0 fixed border-t-2  bg-white shadow-2xl h-[calc(100vh-4rem)] flex flex-col  border-gray-400 p-4 top-23.5 min-[768px]:top-22">
             <div className="flex items-center gap-2 py-4 ">
                 <div className="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full font-bold">
                     <h1 className="font-bold text-2xl font-serif">F</h1>
