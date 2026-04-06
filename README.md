@@ -1,0 +1,76 @@
+# FinDash - Expense Tracker Dashboard
+A responsive dashboard to track income and expenses with insights.
+
+<img width="1597" height="679" alt="dashboard" src="https://github.com/user-attachments/assets/705f603a-4204-498d-a2bd-aeb7d7a3bc14" />
+
+## 📸 Screenshots
+### DashBoard
+<img width="1591" height="709" alt="DashBoard_screenshot" src="https://github.com/user-attachments/assets/1df1ad44-dfe3-4226-be4d-3c5446ad8a6e" />
+
+### 💰 Transactions
+
+<img width="1593" height="672" alt="Transaction" src="https://github.com/user-attachments/assets/f8d6edcf-b85b-4389-bd98-ea21a7764d6e" />
+
+### 📈 Insights
+<img width="1599" height="368" alt="insights" src="https://github.com/user-attachments/assets/a27a2722-d8d5-4c16-aa7d-650aa1bdbdf1" />
+
+## ✨ Features
+### 📊 Dashboard Overview
+Displays a summary of total income, expenses, and balance in a clean and intuitive layout.
+### 💰 Transaction Management
+Add, view, and manage income and expense records efficiently.
+### 📄 Pagination Support
+Transactions are divided into pages to improve performance and make large datasets easier to navigate.
+### 🔍 Filtering by Type
+Easily filter transactions based on type (income or expense) for better analysis.
+### 🔎 Search by Category
+Quickly find transactions by searching categories, improving accessibility and usability.
+### 📈 Insights & Analytics
+• 📉 Line chart showing monthly expense trends
+
+• 🥧 Pie chart visualizing expense distribution by category
+
+• 📅 Highlights highest spending month
+
+• 🏷️ Displays top spending category
+
+## 📱 Responsive Design
+Fully optimized for mobile, tablet, and desktop screens.
+
+## 🎨 Clean UI/UX
+Simple, modern interface focused on usability and user experience.
+
+## 🧠 Approach
+
+- Built using a component-based architecture for better scalability and reusability  
+- Managed application state using useState  
+- Implemented pagination to efficiently handle large transaction datasets  
+- Designed reusable components for transactions, charts, and filters  
+- Used chart libraries to visualize monthly expenses and category distribution  
+- Ensured responsive design using Tailwind CSS
+  
+## 🛠️ Tech Stack
+
+- Frontend: React.js  
+- Styling: Tailwind CSS  
+- Charts:  Recharts
+- State Management: useState  
+- Build Tool: Vite
+- 
+## ⚙️ Setup Instructions
+
+```bash
+- git clone https://github.com/AgnibhaDebnath/fin_dash
+- cd fin_dash
+- npm install
+- npm run dev
+
+```
+## 📁 Folder Structure
+
+- src/
+- ├── components/
+- ├── pages/
+- ├── assets/
+- ├── Data/
+- └── App.jsx
