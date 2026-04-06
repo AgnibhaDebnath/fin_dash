@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { generateTransactions } from "../Data/tranSactionsData";
 import AddTransactionForm from "./AddTransactionForm";
 import { FaArrowUp, FaArrowDown, FaInbox, FaUtensils, FaShoppingCart, FaPlane, FaHeartbeat, FaMoneyCheckAlt, FaLaptopCode, FaFilm, FaChartLine, FaChartPie, FaChevronDown } from "react-icons/fa";
 import Footer from "./footer";
@@ -25,15 +26,15 @@ const Transactions = ({ role, transactions, setTransactions }) => {
     return (
         <section className="w-full mt-28 min-[766px]:px-4 min-[450px]:px-8 px-3 flex flex-col items-center gap-3 mb-3">
             <h1 className="text-3xl font-bold text-gray-700 h-10 pt-1">Transaction Details</h1>
-            <article className="flex flex-col min-[491px]:flex-row  min-[491px]:items-center min-[950px]:w-3/5 min-[765px]:w-4/5 w-full justify-between gap-3 items-start">
-                <div className="flex flex-col items-center  min-[491px]:flex-row gap-3 my-3">
-                    <div className="w-full relative">
+            <article className="flex flex-col min-[491px]:flex-row  items-center min-[1024px]:w-4/5 min-[765px]:w-11/12 w-full justify-between gap-3 max-[491px]:items-start">
+                <div className="flex w-8/12 min-[853px]:w-10/12 flex-col items-center  min-[1059px]:flex-row  gap-3 my-3 ml-1 max-[491px]:items-start">
+                    <div className="w-40 relative justify-center flex">
                         <select value={selectedValue}
                             onChange={e => {
                                 setSelectedValue(e.target.value);
                                 setCurrentPage(1)
                             }}
-                            className="border-2 font-mono border-gray-400 rounded-lg px-4 appearance-none py-1.5 w-full  block font-extrabold cursor-pointer focus:outline-none
+                            className="border-2 font-mono border-gray-400 rounded-lg px-4 appearance-none py-1.5 w-40  block font-extrabold cursor-pointer focus:outline-none
     focus:ring-2 focus:ring-blue-500
     focus:border-blue-500
     hover:border-blue-400
@@ -45,7 +46,18 @@ const Transactions = ({ role, transactions, setTransactions }) => {
                         </select>
                         <FaChevronDown className="absolute right-3 top-3 pointer-events-none" />
                     </div>
-
+                    <div className="w-full flex justify-center max-[491px]:justify-start">
+                        <button
+                            onClick={() => {
+                                const newData = generateTransactions();
+                                setTransactions(newData);
+                                localStorage.setItem("transactions", JSON.stringify(newData));
+                            }}
+                            className=" py-1 px-3 bg-blue-100 cursor-pointer text-[0.8rem] text-blue-600 rounded-full font-medium"
+                        >
+                            Generate New Data
+                        </button>
+                    </div>
                     <div className="relative">
                         <FaSearch className="absolute top-2.5 left-3" />
                         <input
