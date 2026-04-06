@@ -1,19 +1,31 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 import Navbar from "../Components/navbar"
 import SideBar from "../Components/sidebar"
 import Cards from "../Components/Cards";
 import Charts from "../Components/charts";
 import Transactions from "../Components/TranSactions";
-import { transactionsData } from "../Data/tranSactionsData";
+import { generateTransactions } from "../Data/tranSactionsData";
 import Insights from "../Components/insights";
 
 const DashBoard = () => {
     const [role, setRole] = useState("user");
     const [activeTab, setActiveTab] = useState("dashboard");
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-    const [transactions, setTransactions] = useState(transactionsData);
+    const [transactions, setTransactions] = useState(() => {
+        const stored = localStorage.getItem("transactions");
 
+        if (stored) {
+            return JSON.parse(stored);
+        }
+
+        const generated = generateTransactions();
+        localStorage.setItem("transactions", JSON.stringify(generated));
+        return generated;
+    });
+    useEffect(() => {
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+    }, [transactions]);
 
     const { total_income, total_expense, expense_category, monthly_expense_data, max_Category, month_having_max_expense } = useMemo(() => {
         if (transactions.length == 0) {
