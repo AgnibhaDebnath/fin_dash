@@ -17,7 +17,7 @@ const SideBar = ({ setActiveTab, activeTab, role, setRole }) => {
             </div>
 
             <div className="md:hidden">
-                <input type="text" placeholder="Search..." className="border-2 rounded-full pl-3 py-0.5 pb-1 text-justify " />
+                <input type="text" placeholder="Search..." className="border-2 w-full box-border rounded-full pl-3 py-0.5 pb-1 text-justify " />
             </div>
 
 
