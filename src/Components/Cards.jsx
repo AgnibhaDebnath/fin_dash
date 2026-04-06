@@ -10,7 +10,7 @@ const Cards = ({ total_income, total_expense, monthly_expense_data }) => {
             <div className="w-full min-[1215px]:h-1/5 h-2/5 flex flex-col items-center mt-24 px-4 sm:pl-14 sm:pr-4">
                 <h1 className="text-3xl font-bold text-gray-700 py-4">Overview</h1>
 
-                <section className="grid grid-cols-1 min-[1215px]:grid-cols-3 min-[667px]:grid-cols-2 gap-x-4 h-full justify-items-center w-full  pt-3 gap-y-2">
+                <section className="grid grid-cols-1 min-[1215px]:grid-cols-3 min-[667px]:grid-cols-2 gap-x-4 h-full justify-items-center w-full  pt-3 gap-y-10 min-[667px]:gap-y-5">
 
                     {cards_data.map((card_data) => (
                         <article key={card_data.id} className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition h-full w-11/12 min-[480px]:w-4/5 min-[667px]:w-full">
