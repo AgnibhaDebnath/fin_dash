@@ -1,14 +1,14 @@
 import { FaHouse } from "react-icons/fa6";
 import { FaList } from "react-icons/fa";
 import { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
-import { FaUser, FaUserShield, FaEye } from "react-icons/fa";
+import { FaChevronDown, FaSearch, FaUser, FaUserShield, FaEye } from "react-icons/fa";
+
 
 const SideBar = ({ setActiveTab, activeTab, role, setRole }) => {
     const [isOpen, setIsOpen] = useState(false)
     return (
 
-        <aside className="w-60 left-0 fixed border-t-2  bg-white shadow-2xl h-[calc(100vh-4rem)] flex flex-col  border-gray-400 p-4 top-23.5 min-[768px]:top-22">
+        <aside className="w-60 left-0 fixed border-t-2  bg-white shadow-2xl h-[calc(100vh-4rem)] flex flex-col  border-gray-400 p-4 top-22 min-[768px]:top-22">
             <div className="flex items-center gap-2 py-4 ">
                 <div className="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full font-bold">
                     <h1 className="font-bold text-2xl font-serif">F</h1>
@@ -16,18 +16,19 @@ const SideBar = ({ setActiveTab, activeTab, role, setRole }) => {
                 <span className="text-3xl font-bold">FinDash</span>
             </div>
 
-            <div className="md:hidden">
-                <input type="text" placeholder="Search..." className="border-2 w-full box-border rounded-full pl-3 py-0.5 pb-1 text-justify " />
+            <div className="md:hidden relative">
+                <input type="text" placeholder="Search..." className="border-2 w-full box-border rounded-full pl-8 py-0.5 pb-1 text-justify shadow-sm focus:outline-none focus:ring-2 focus:border-blue-500  focus:ring-blue-500 border-gray-400" />
+                <FaSearch className="absolute top-2.5 left-3" />
             </div>
 
 
             <div className={`py-3 flex  items-center ml-2 `}>
                 <FaHouse className="inline mr-2" />
-                <button onClick={() => setActiveTab("dashboard")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-2 rounded-xl py-0.5 ${activeTab == "dashboard" ? "text-blue-600  bg-blue-100" : "text-gray-700 hover:bg-gray-100  "}`}>Dashboard</button>
+                <button onClick={() => setActiveTab("dashboard")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-4 rounded-lg py-0.5 ${activeTab == "dashboard" ? "text-blue-600  bg-blue-100" : "text-gray-700 hover:bg-gray-100  "}`}>Dashboard</button>
             </div>
             <div className="py-3 flex  items-center ml-2">
                 <FaList className="inline mr-2" />
-                <button onClick={() => setActiveTab("transactions")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-2 rounded-xl py-0.5 ${activeTab == "transactions" ? "text-blue-500 bg-blue-100" : "text-gray-700 hover:bg-gray-100"}`}>Transactions</button>
+                <button onClick={() => setActiveTab("transactions")} className={`font-medium  hover:scale-105 transition duration-150 cursor-pointer px-4 rounded-lg py-0.5 ${activeTab == "transactions" ? "text-blue-500 bg-blue-100" : "text-gray-700 hover:bg-gray-100"}`}>Transactions</button>
             </div>
             <div className="relative md:hidden flex items-center ml-2">
 
