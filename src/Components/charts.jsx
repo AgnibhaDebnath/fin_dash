@@ -49,6 +49,8 @@ const Charts = ({ expense_category, monthly_expense_data }) => {
                             label={({ name, percent }) =>
                                 `${name} ${(percent * 100).toFixed(0)}%`
                             }
+                            fontFamily="mono"
+
                             fontSize={isMobile ? 12 : 15}
                             isAnimationActive={true}
                             shape={(props) => {
@@ -62,7 +64,7 @@ const Charts = ({ expense_category, monthly_expense_data }) => {
                             y="52%"
                             textAnchor="middle"
                             dominantBaseline="middle"
-                            className="text-[1.2rem] font-bold fill-gray-500"
+                            className="text-[1.2rem] font-extrabold font-[Lato] fill-gray-500"
                         >
                             ₹1000
                         </text>
