@@ -1,4 +1,5 @@
 import { FaChartPie, FaCalendarAlt } from "react-icons/fa";
+import Footer from "./footer";
 const Insights = ({ max_Category, total_expense, month_having_max_expense }) => {
     return (
         <section className="w-full flex flex-col  justify-center mb-5">
@@ -31,6 +32,7 @@ const Insights = ({ max_Category, total_expense, month_having_max_expense }) => 
                     </div>
                 </article>
             </div>
+            <Footer />
         </section>
     )
 }

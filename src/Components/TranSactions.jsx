@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import AddTransactionForm from "./AddTransactionForm";
 import { FaArrowUp, FaArrowDown, FaInbox, FaUtensils, FaShoppingCart, FaPlane, FaHeartbeat, FaMoneyCheckAlt, FaLaptopCode, FaFilm, FaChartLine, FaChartPie } from "react-icons/fa";
+import Footer from "./footer";
 const Transactions = ({ role, transactions, setTransactions }) => {
     const [showForm, setShowForm] = useState(false)
     const [search, setSearch] = useState("");
@@ -122,6 +123,7 @@ const Transactions = ({ role, transactions, setTransactions }) => {
             <article>
                 <AddTransactionForm showForm={showForm} setShowForm={setShowForm} transactions={transactions} setTransactions={setTransactions} editingTransaction={editingTransaction} setEditingTransaction={setEditingTransaction} />
             </article>
+            <Footer />
         </section>
     )
 }
