@@ -22,7 +22,7 @@ const Transactions = ({ role, transactions, setTransactions }) => {
 
 
     return (
-        <section className="w-full mt-28 min-[766px]:px-4 min-[417px]:px-8 px-3 flex flex-col items-center gap-3 mb-3">
+        <section className="w-full mt-28 min-[766px]:px-4 min-[450px]:px-8 px-3 flex flex-col items-center gap-3 mb-3">
             <h1 className="text-3xl font-bold text-gray-700 h-10 pt-1">Transaction Details</h1>
             <article className="flex flex-col min-[491px]:flex-row  min-[491px]:items-center min-[950px]:w-3/5 min-[765px]:w-4/5 w-full justify-between gap-3 items-start">
                 <div className="flex flex-col items-center  min-[491px]:flex-row gap-3 my-3">
@@ -60,7 +60,7 @@ const Transactions = ({ role, transactions, setTransactions }) => {
                 }
             </article>
 
-            <article className="w-full sm:px-20 min-[446px]:px-4 px-0 flex flex-col items-center gap-4">
+            <article className="w-full sm:px-20 min-[485px]:px-4 px-0 flex flex-col items-center gap-4">
                 {transactions.length == 0 ? <>
                     <FaInbox className="text-5xl mb-3 text-gray-600" />
                     <h1 className="text-gray-700 font-medium text-[1.1rem]">No transaction yet</h1>
@@ -89,11 +89,11 @@ const Transactions = ({ role, transactions, setTransactions }) => {
                                 </p>
 
                             </div>
-                            <div className="flex justify-between my-2">
-                                <p className="font-medium text-gray-700">
-                                    <span className="text-gray-600 text-[1rem] font-normal">Catagory</span>: {currentTransaction.category == "Food" ? <FaUtensils className="inline mx-1 mb-1 text-orange-600  " /> : currentTransaction.category == "Shopping" ? <FaShoppingCart className="inline text-blue-600 mx-1 mb-1" /> : currentTransaction.category == "Travel" ? <FaPlane className="inline text-purple-500 mx-1" /> : currentTransaction.category == "Medical" ? <FaHeartbeat className="inline text-red-500 mx-1" /> : currentTransaction.category == "Salary" ? < FaMoneyCheckAlt className="inline mx-1  text-green-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Freelance" ? < FaLaptopCode className="inline mx-1  text-blue-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Entertainment" ? < FaFilm className="inline mx-1  text-pink-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Investment Return" ? <  FaChartPie className="inline mx-1  text-teal-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Business Profits" ? < FaChartLine className="inline mx-1  text-emerald-600 text-[1.2rem] mb-0.5" /> : ""}{currentTransaction.category}
+                            <div className="flex justify-between my-2 items-center">
+                                <p className="font-medium text-gray-700 max-[415px]:text-sm ">
+                                    <span className="text-gray-600 text-sm min-[415px]:text-[1rem] font-normal">Catagory</span>: {currentTransaction.category == "Food" ? <FaUtensils className="inline mx-1 mb-1 text-orange-600  " /> : currentTransaction.category == "Shopping" ? <FaShoppingCart className="inline text-blue-600 mx-1 mb-1" /> : currentTransaction.category == "Travel" ? <FaPlane className="inline text-purple-500 mx-1" /> : currentTransaction.category == "Medical" ? <FaHeartbeat className="inline text-red-500 mx-1" /> : currentTransaction.category == "Salary" ? < FaMoneyCheckAlt className="inline mx-1  text-green-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Freelance" ? < FaLaptopCode className="inline mx-1  text-blue-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Entertainment" ? < FaFilm className="inline mx-1  text-pink-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Investment Return" ? <  FaChartPie className="inline mx-1  text-teal-600 text-[1.2rem] mb-0.5" /> : currentTransaction.category == "Business Profits" ? < FaChartLine className="inline mx-1  text-emerald-600 text-[1.2rem] mb-0.5" /> : ""}{currentTransaction.category}
                                 </p>
-                                <p>Type: {currentTransaction.type}</p>
+                                <p className="max-[415px]:text-sm mb-1">Type: {currentTransaction.type}</p>
                             </div>
                             {role == "admin" &&
                                 <div className="flex justify-end">
