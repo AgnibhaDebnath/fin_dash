@@ -1,12 +1,12 @@
 
-const incomeCategories = [
+export const incomeCategories = [
   "Salary",
   "Freelance",
   "Investment Return",
   "Business Profits"
 ];
 
-const expenseCategories = [
+export const expenseCategories = [
   "Food",
   "Shopping",
   "Travel",
@@ -18,14 +18,14 @@ const expenseCategories = [
 const generateTransactions = () => {
   const data = [];
   let id = 1;
-
+const year = Math.floor(Math.random() * (2030 - 2000 + 1)) + 2000;
   for (let month = 0; month < 12; month++) {
     for (let i = 0; i < 20; i++) {
       const randomDay = Math.floor(Math.random() * 28) + 1;
-
-      const date = new Date(2026, month, randomDay)
-        .toISOString()
-        .split("T")[0];
+      
+      const date = new Date(year, month, randomDay)
+        .toLocaleDateString("en-CA")
+        
 
       
       const type = Math.random() > 0.3 ? "expense" : "income";
@@ -60,3 +60,4 @@ const generateTransactions = () => {
 
 
 export const transactionsData = generateTransactions();
+// export const transactionsData = [];
