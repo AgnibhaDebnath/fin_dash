@@ -5,6 +5,7 @@ import AddTransactionForm from "./AddTransactionForm";
 import { FaArrowUp, FaArrowDown, FaInbox, FaUtensils, FaShoppingCart, FaPlane, FaHeartbeat, FaMoneyCheckAlt, FaLaptopCode, FaFilm, FaChartLine, FaChartPie, FaChevronDown } from "react-icons/fa";
 import Footer from "./footer";
 const Transactions = ({ role, transactions, setTransactions }) => {
+
     const [showForm, setShowForm] = useState(false)
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -87,7 +88,8 @@ const Transactions = ({ role, transactions, setTransactions }) => {
                     <h1 className="text-gray-700 font-medium text-[1.1rem]">No transaction yet</h1>
                 </> :
                     currentTransactions.map((currentTransaction) => (
-                        <div key={currentTransaction.id} className="shadow-md hover:shadow-lg transition rounded-2xl p-4 w-full min-[1200px]:w-1/2 min-[800px]:w-4/5 ">
+
+                        <div key={currentTransaction.id} className={`shadow-md hover:shadow-lg transition rounded-2xl p-4 w-full min-[1200px]:w-1/2 min-[800px]:w-4/5 ${editingTransaction?.id === currentTransaction.id ? "border-2 border-blue-500 bg-blue-50" : ""} `}>
                             <div className={`p-3 rounded-full w-10 ${currentTransaction.type == "income" ? "bg-green-100" : "bg-red-100"}`}>
                                 {currentTransaction.type === "income" ? (
                                     <FaArrowUp className="text-green-500" />
@@ -120,7 +122,7 @@ const Transactions = ({ role, transactions, setTransactions }) => {
                                 <div className="flex justify-end">
                                     <button onClick={() => {
                                         setEditingTransaction(currentTransaction);
-                                        console.log(currentTransaction)
+
                                         setShowForm(true)
                                     }} className="px-5 py-1 rounded-2xl bg-blue-100 text-blue-600 hover:bg-blue-200 cursor-pointer font-medium transition">Edit</button>
                                 </div>
