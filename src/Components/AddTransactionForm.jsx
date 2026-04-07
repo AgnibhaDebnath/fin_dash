@@ -86,7 +86,7 @@ const AddTransactionForm = ({ showForm, setShowForm, setTransactions, transactio
                         <input
                             type="text"
                             placeholder="Amount"
-                            className={`w-full border-2 font-mono font-medium px-4 py-1.25 my-2 rounded-xl ${errors.amount ? "border-red-500" : ""}`}
+                            className={`w-full border-2 font-mono transition duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:border-blue-500 shadow-sm border-gray-400 bg-gray-50 font-medium px-4 py-1.25 my-2 rounded-xl ${errors.amount ? "border-red-500" : ""}`}
 
                             value={formData.amount}
                             onChange={(e) => {
@@ -107,7 +107,7 @@ const AddTransactionForm = ({ showForm, setShowForm, setTransactions, transactio
 
                         <div className="relative">
                             <select
-                                className={`w-full border-2 font-mono font-medium px-4 py-1.25 my-2 rounded-xl appearance-none ${errors.type ? "border-red-500" : ""}`}
+                                className={`w-full border-2 font-mono font-medium px-4 py-1.25 my-2 rounded-xl appearance-none transition duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:border-blue-500 cursor-pointer shadow-sm border-gray-400 bg-gray-50 ${errors.type ? "border-red-500" : ""}`}
                                 value={formData.type}
                                 onChange={(e) => {
                                     setFormData({ ...formData, type: e.target.value })
@@ -131,7 +131,7 @@ const AddTransactionForm = ({ showForm, setShowForm, setTransactions, transactio
                         <div className={`relative ${formData.type == "" ? "bg-gray-200 rounded-2xl" : ""}`}>
 
                             <select disabled={!formData.type}
-                                className={`w-full font-mono font-medium appearance-none border-2 px-4 py-1.25 my-2 rounded-xl   ${errors.category ? "border-red-500" : ""}`}
+                                className={`w-full font-mono font-medium appearance-none border-2 px-4 py-1.25 my-2 rounded-xl ${formData.type != "" ? "transition duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:border-blue-500 cursor-pointer shadow-sm border-gray-400 bg-gray-50" : ""}   ${errors.category ? "border-red-500" : ""}`}
                                 value={formData.category}
                                 onChange={(e) => {
                                     setFormData({ ...formData, category: e.target.value })
@@ -179,7 +179,7 @@ const AddTransactionForm = ({ showForm, setShowForm, setTransactions, transactio
                         <div className="relative">
                             <DatePicker
 
-                                className={`w-67 border-2 px-4 py-1.25 my-3 rounded-xl font-medium cursor-default font-mono ${errors.date ? "border-red-500" : ""}`}
+                                className={`w-67 border-2 px-4 py-1.25 my-3 rounded-xl font-medium font-mono transition duration-200 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:border-blue-500 cursor-pointer shadow-sm border-gray-400 bg-gray-50 ${errors.date ? "border-red-500" : ""}`}
                                 selected={formData.date ? new Date(formData.date) : null}
                                 onChange={(date) => {
                                     setFormData({ ...formData, date: date ? date.toISOString().split("T")[0] : "", })
