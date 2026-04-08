@@ -7,7 +7,7 @@ import Charts from "../Components/charts";
 import Transactions from "../Components/TranSactions";
 import { generateTransactions } from "../Data/tranSactionsData";
 import Insights from "../Components/insights";
-
+import Footer from "../Components/footer";
 const DashBoard = () => {
     const [role, setRole] = useState("user");
     const [activeTab, setActiveTab] = useState("dashboard");
@@ -27,13 +27,50 @@ const DashBoard = () => {
         localStorage.setItem("transactions", JSON.stringify(transactions));
     }, [transactions]);
 
-    const { total_income, total_expense, expense_category, monthly_expense_data, max_Category, month_having_max_expense } = useMemo(() => {
+    const { total_income, total_expense, expense_category, monthly_expense_data, max_Category, month_having_max_expense, monthly_income_data } = useMemo(() => {
         if (transactions.length == 0) {
             return {
                 total_income: 0,
                 total_expense: 0,
                 expense_category: [],
-                monthly_expense_data: []
+                monthly_expense_data: [],
+                monthly_income_data: []
+            }
+        } else if (transactions.length > 0 && !(transactions.some(
+            (t) => t.type === "expense"
+        ))) {
+            const total_income = transactions.filter((transaction) => transaction.type == "income").reduce((sum, transaction) => sum + transaction.amount, 0);
+            const monthly_income = {};
+
+            transactions.forEach((tx) => {
+
+                if (tx.type !== "income") return;
+
+
+                const date = new Date(tx.date);
+
+                const month = date.toLocaleString("en-US", { month: "short", });
+
+                const year = date.toLocaleString("en-US", { year: "numeric" })
+
+                const key = `${month}-${year}`
+                if (!monthly_income[key]) {
+                    monthly_income[key] = {
+                        month,
+                        year,
+                        income: 0
+                    }
+                }
+                monthly_income[key].income += tx.amount
+
+            })
+            const monthly_income_data = Object.values(monthly_income);
+            return {
+                total_income,
+                total_expense: 0,
+                expense_category: [],
+                monthly_expense_data: [],
+                monthly_income_data
             }
         }
         const total_income = transactions.filter((transaction) => transaction.type == "income").reduce((sum, transaction) => sum + transaction.amount, 0);
@@ -82,6 +119,33 @@ const DashBoard = () => {
         })
         const monthly_expense_data = Object.values(result);
 
+        const monthly_income = {};
+
+        transactions.forEach((tx) => {
+
+            if (tx.type !== "income") return;
+
+
+            const date = new Date(tx.date);
+
+            const month = date.toLocaleString("en-US", { month: "short", });
+
+            const year = date.toLocaleString("en-US", { year: "numeric" })
+
+            const key = `${month}-${year}`
+            if (!monthly_income[key]) {
+                monthly_income[key] = {
+                    month,
+                    year,
+                    income: 0
+                }
+            }
+            monthly_income[key].income += tx.amount
+
+        })
+        const monthly_income_data = Object.values(monthly_income);
+
+
         const month_having_max_expense = monthly_expense_data.reduce((max, month) => month.expense > max.expense ? month : max);
 
         return {
@@ -90,6 +154,7 @@ const DashBoard = () => {
             total_expense,
             expense_category,
             monthly_expense_data,
+            monthly_income_data,
             max_Category
         }
     }, [transactions])
@@ -115,15 +180,16 @@ const DashBoard = () => {
                 {activeTab == "dashboard" && <>
                     <div className="flex flex-col w-full">
                         <Cards total_income={total_income} total_expense={total_expense} monthly_expense_data={monthly_expense_data} />
-                        <Charts expense_category={expense_category} monthly_expense_data={monthly_expense_data} />
+                        <Charts expense_category={expense_category} monthly_expense_data={monthly_expense_data} monthly_income_data={monthly_income_data} total_expense={total_expense} />
                         <Insights max_Category={max_Category} total_expense={total_expense} month_having_max_expense={month_having_max_expense} />
                     </div>
                 </>
                 }
                 {activeTab == "transactions" && <>
-
-                    <Transactions role={role} transactions={transactions} setTransactions={setTransactions} />
-
+                    <div className="flex flex-col items-center w-full">
+                        <Transactions role={role} transactions={transactions} setTransactions={setTransactions} />
+                        <Footer />
+                    </div>
                 </>
                 }
             </div>
