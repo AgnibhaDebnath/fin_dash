@@ -11,7 +11,8 @@ A responsive dashboard to track income and expenses with insights.
 
 ### 💰 Transactions
 
-<img width="1593" height="672" alt="Transaction" src="https://github.com/user-attachments/assets/f8d6edcf-b85b-4389-bd98-ea21a7764d6e" />
+![Transaction_screenshort](https://github.com/user-attachments/assets/01ccf549-034c-4a0f-b820-d51307b7fb11)
+
 
 ### 📈 Insights
 <img width="1599" height="368" alt="insights" src="https://github.com/user-attachments/assets/a27a2722-d8d5-4c16-aa7d-650aa1bdbdf1" />
