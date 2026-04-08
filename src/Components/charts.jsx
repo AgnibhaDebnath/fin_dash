@@ -46,12 +46,13 @@ const Charts = ({ expense_category, monthly_expense_data, monthly_income_data, t
 
     return (
         <section className="mt-6 py-4 pb-10 pr-4 sm:pl-14 shadow-2xl ">
-            {monthly_income_vs_expense_data.length > 0 && <div className="flex justify-center">
-                <h2 className="text-[1rem] font-semibold mb-2 text-gray-700 text-center">
-                    Monthly Income vs Expense(Jan - Dec {monthly_income_vs_expense_data.length != 0 ? monthly_income_vs_expense_data[0].year : ""})
-                </h2>
-            </div>}
-            {monthly_income_vs_expense_data.length > 0 ? <article className="w-full h-75">
+
+            {monthly_income_vs_expense_data.length > 0 ? <article className="w-full h-75 mb-20">
+                {monthly_income_vs_expense_data.length > 0 && <div className="flex justify-center w-full">
+                    <h2 className="text-[1rem] font-semibold mb-2 text-gray-700 text-center pb-5">
+                        Monthly Income vs Expense(Jan - Dec {monthly_income_vs_expense_data.length != 0 ? monthly_income_vs_expense_data[0].year : ""})
+                    </h2>
+                </div>}
                 < ResponsiveContainer width="100 %" height="100%">
                     <BarChart data={monthly_income_vs_expense_data} barCategoryGap="20%">
                         <CartesianGrid strokeDasharray="3 3" />
