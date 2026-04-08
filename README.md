@@ -1,11 +1,13 @@
 # FinDash - Expense Tracker Dashboard
 A responsive dashboard to track income and expenses with insights.
 
-<img width="1597" height="679" alt="dashboard" src="https://github.com/user-attachments/assets/705f603a-4204-498d-a2bd-aeb7d7a3bc14" />
+![dashboard](https://github.com/user-attachments/assets/21740e9f-c4a6-47ab-a719-97837a7b9df7)
+
 
 ## 📸 Screenshots
 ### DashBoard
-<img width="1591" height="709" alt="DashBoard_screenshot" src="https://github.com/user-attachments/assets/1df1ad44-dfe3-4226-be4d-3c5446ad8a6e" />
+![dashboard](https://github.com/user-attachments/assets/1e3c6279-579e-418c-aed6-379e48d1ba68)
+
 
 ### 💰 Transactions
 
