@@ -145,7 +145,7 @@ const Transactions = ({ role, transactions, setTransactions }) => {
             <article>
                 <AddTransactionForm showForm={showForm} setShowForm={setShowForm} transactions={transactions} setTransactions={setTransactions} editingTransaction={editingTransaction} setEditingTransaction={setEditingTransaction} />
             </article>
-            <Footer />
+
         </section>
     )
 }
