@@ -50,7 +50,7 @@ const Charts = ({ expense_category, monthly_expense_data, monthly_income_data, t
             {monthly_income_vs_expense_data.length > 0 ? <article className="w-full h-75 mb-20">
                 {monthly_income_vs_expense_data.length > 0 && <div className="flex justify-center w-full">
                     <h2 className="text-[1rem] font-semibold mb-2 text-gray-700 text-center pb-5">
-                        Monthly Income vs Expense(Jan - Dec {monthly_income_vs_expense_data.length != 0 ? monthly_income_vs_expense_data[0].year : ""})
+                        Monthly Income vs Expense({monthly_income_vs_expense_data.length != 0 ? monthly_income_vs_expense_data[0].year : ""})
                     </h2>
                 </div>}
                 < ResponsiveContainer width="100 %" height="100%">
@@ -80,7 +80,7 @@ const Charts = ({ expense_category, monthly_expense_data, monthly_income_data, t
             <div className="w-full flex flex-col items-center justify-evenly min-[1250px]:flex-row min-[1250px]:gap-0 gap-10">
                 {monthly_expense_data.length > 0 ? < article className="w-full min-[1250px]:w-3/5 h-65" >
                     <h2 className="text-gray-700 font-semibold mb-6 text-center">
-                        Monthly Expenses(Jan - Dec {monthly_expense_data.length != 0 ? monthly_expense_data[0].year : ""})
+                        Monthly Expenses({monthly_expense_data.length != 0 ? monthly_expense_data[0].year : ""})
                     </h2>
                     < ResponsiveContainer width="100 %" height="100%">
                         <LineChart data={monthly_expense_data} >
@@ -105,7 +105,7 @@ const Charts = ({ expense_category, monthly_expense_data, monthly_income_data, t
                     <div className="">
                         <h2 className="text-gray-700 font-semibold  text-center">
                             Expense Breakdown
-                            (Jan - Dec {monthly_expense_data.length != 0 ? monthly_expense_data[0].year : ""})
+                            ({monthly_expense_data.length != 0 ? monthly_expense_data[0].year : ""})
                         </h2>
                     </div>
                     <ResponsiveContainer width="100%" height="100%">

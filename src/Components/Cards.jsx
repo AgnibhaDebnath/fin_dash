@@ -14,7 +14,7 @@ const Cards = ({ total_income, total_expense, monthly_expense_data }) => {
 
                     {cards_data.map((card_data) => (
                         <article key={card_data.id} className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition h-full w-11/12 min-[480px]:w-4/5 min-[667px]:w-full">
-                            <h2 className="text-gray-600"><span className="">{card_data.id == 1 ? <FaArrowUp className="inline mb-1 mr-1 text-green-500" /> : card_data.id == 2 ? <FaArrowDown className="inline mb-1 mr-1 text-red-500" /> : <FaBalanceScale className="inline mb-1 mr-1 text-blue-500" />}</span>{card_data.title}{monthly_expense_data.length != 0 ? ` (Jan - Dec ${monthly_expense_data[0].year})` : ""}</h2>
+                            <h2 className="text-gray-600"><span className="">{card_data.id == 1 ? <FaArrowUp className="inline mb-1 mr-1 text-green-500" /> : card_data.id == 2 ? <FaArrowDown className="inline mb-1 mr-1 text-red-500" /> : <FaBalanceScale className="inline mb-1 mr-1 text-blue-500" />}</span>{card_data.title}{monthly_expense_data.length != 0 ? ` (${monthly_expense_data[0].year})` : ""}</h2>
 
                             {card_data.id == 1 && total_income != 0 && <p className={`text-xl font-[Lato] font-extrabold tracking-wide ml-4 ${card_data.color}`}>₹{total_income}</p>}
 

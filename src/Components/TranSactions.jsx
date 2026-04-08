@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { generateTransactions } from "../Data/tranSactionsData";
 import AddTransactionForm from "./AddTransactionForm";
 import { FaArrowUp, FaArrowDown, FaInbox, FaUtensils, FaShoppingCart, FaPlane, FaHeartbeat, FaMoneyCheckAlt, FaLaptopCode, FaFilm, FaChartLine, FaChartPie, FaChevronDown } from "react-icons/fa";
-import Footer from "./footer";
+
 const Transactions = ({ role, transactions, setTransactions }) => {
 
     const [showForm, setShowForm] = useState(false)
