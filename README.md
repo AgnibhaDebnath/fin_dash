@@ -20,22 +20,28 @@ A responsive dashboard to track income and expenses with insights.
 ## ✨ Features
 ### 📊 Dashboard Overview
 Displays a summary of total income, expenses, and balance in a clean and intuitive layout.
+
 ### 💰 Transaction Management
 Add, view, and manage income and expense records efficiently.
+
 ### 📄 Pagination Support
 Transactions are divided into pages to improve performance and make large datasets easier to navigate.
 ### 🔍 Filtering by Type
 Easily filter transactions based on type (income or expense) for better analysis.
+
 ### 🔎 Search by Category
 Quickly find transactions by searching categories, improving accessibility and usability.
+
 ### 📈 Insights & Analytics
-• 📉 Line chart showing monthly expense trends
+- 📊 Bar chart showing monthly income vs expense trends
+  
+- 📉 Line chart showing monthly expense trends
 
-• 🥧 Pie chart visualizing expense distribution by category
+- 🥧 Pie chart visualizing expense distribution by category
 
-• 📅 Highlights highest spending month
+- 📅 Highlights highest spending month
 
-• 🏷️ Displays top spending category
+- 🏷️ Displays top spending category
 
 ## 📱 Responsive Design
 Fully optimized for mobile, tablet, and desktop screens.
@@ -59,7 +65,7 @@ Simple, modern interface focused on usability and user experience.
 - Charts:  Recharts
 - State Management: useState  
 - Build Tool: Vite
-- 
+  
 ## ⚙️ Setup Instructions
 
 ```bash
