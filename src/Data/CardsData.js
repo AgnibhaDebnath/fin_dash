@@ -10,6 +10,6 @@
     },
     {
         id: 3,
-        title: "Balance",
+        title: "Net Savings",
         color: "text-blue-500"
     }]
