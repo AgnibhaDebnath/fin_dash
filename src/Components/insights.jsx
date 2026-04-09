@@ -1,4 +1,5 @@
-import { FaChartPie, FaCalendarAlt } from "react-icons/fa";
+import { FaChartPie, FaCalendarAlt, FaInbox, FaUtensils, FaShoppingCart, FaPlane, FaHeartbeat, FaFilm } from "react-icons/fa";
+
 import Footer from "./footer";
 const Insights = ({ max_Category, total_expense, month_having_max_expense }) => {
     return (
@@ -13,7 +14,7 @@ const Insights = ({ max_Category, total_expense, month_having_max_expense }) => 
                     <div className="w-10/11 min-[1000px]:w-full shadow-md hover:shadow-lg rounded-2xl my-2 py-4 flex flex-col justify-center items-center" >
                         <h1 className="font-bold text-xl text-gray-600"><FaChartPie className="inline mb-0.5 text-3xl mr-2" />Top Category Spending</h1>
                         {max_Category ? <>
-                            <p>{max_Category.name}</p>
+                            {max_Category.name === "Food" ? <p><FaUtensils className="inline mr-2 text-orange-500 " />{max_Category.name}</p> : max_Category.name === "Shopping" ? <p><FaShoppingCart className="inline mr-2 text-blue-500" />{max_Category.name}</p> : max_Category.name === "Travel" ? <p><FaPlane className="inline text-purple-500 mr-2" />{max_Category.name}</p> : max_Category.name === "Medical" ? <p><FaHeartbeat className="inline text-red-500 mr-2" />{max_Category.name}</p> : max_Category.name === "Entertainment" ? <p><FaFilm className="inline text-pink-500 mr-2" />{max_Category.name}</p> : ""}
                             <p className="font-extrabold text-[1.2rem] text-red-500 font-[Lato]">₹ {max_Category.value}</p>
                             <p className="text-gray-600">{((max_Category.value / total_expense) * 100).toFixed(0)}% of total expense</p>
                             <p className="text-gray-600">Highest spending category</p>
