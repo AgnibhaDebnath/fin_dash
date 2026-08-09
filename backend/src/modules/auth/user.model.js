@@ -4,29 +4,29 @@ import mongoose from "mongoose"
 
 const userSchema = new mongoose.Schema({
     fullName: {
-        type: "string",
+        type: String,
         required: true,
         trim: true,
         minlength:3
     },
     email: {
-        type: "string",
+        type: String,
         required: true,
         trim: true,
         unique: true,
         lowercase:true
     },
     password: {
-        type: "string",
+        type: String,
         required: true,
         minlength:8
     },
     profileImage: {
-        type: "string",
+        type:String,
         default: "", 
     },
     currency: {
-        type: "string",
+        type: String,
         default:"INR"
     }
 
