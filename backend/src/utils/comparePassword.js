@@ -1,9 +1,4 @@
-import bcrypt from "bcrypt"
-const comparePassword = (plainPassword,hashedPassword) => {
-    const isMatch = bcrypt.compare(plainPassword, hashedPassword);
-    if (isMatch) {
-        return true;
-    }
-    return false;
-}
-export default comparePassword
+import bcrypt from "bcrypt";
+export const comparePassword = (plainPassword, hashedPassword) => {
+    return bcrypt.compare(plainPassword, hashedPassword);
+};
