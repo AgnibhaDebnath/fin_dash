@@ -1,75 +1,97 @@
-
-import { createTransactionService,getTransactionsService ,updateTransactionService,deleteTransactionService} from "./transaction.service.js";
-const createTransactionController = async (req, res, next) => {
+import {
+    createTransactionService,
+    getTransactionsService,
+    updateTransactionService,
+    deleteTransactionService,
+} from "./transaction.service.js";
+const createTransactionController = async (req, res) => {
     try {
         await createTransactionService(req.body, req.user);
         res.status(201).json({
             success: true,
-            message:"Transaction added successfully",
-        })
+            message: "Transaction added successfully",
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json({
             success: true,
-            message:"Something went wrong",
-        })
-}
-}
+            message: "Couldn't add the transaction. Please try again later.",
+        });
+    }
+};
 
-const getTransactionsController = async (req, res, next) => {
-    
-    const type = req.query.type || "all types"
-    const category = req.query.category || "all categories"
+const getTransactionsController = async (req, res) => {
+    const type = req.query.type || "all types";
+    const category = req.query.category || "all categories";
     const search = req.query.search || "";
+    const currentPage = Number(req.query.page);
     const dateFilter = req.query.dateFilter || "this-month";
-    
+
     try {
-    
-        const { totalTransactions,transactions } = await getTransactionsService(type, category,search,dateFilter,req.user);
+        const { totalTransactions, transactions, totalTransactionsAllOverTime } =
+            await getTransactionsService(type, category, search, currentPage, dateFilter, req.user);
+
         res.status(201).json({
             totalTransactions,
-            transactions
-        })
+            transactions,
+            totalTransactionsAllOverTime,
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message:"Something went wrong",
-        })
-}
-    
-}
-
-const updateTransactionController = async (req,res,next) => {
-    const transactionID = req.params.id;
-    const updatedTransaction = await updateTransactionService(req.body, transactionID, req.user)
-    if (!updatedTransaction) {
-        return res.status(404).json({
-            message: "Transaction not found",
+            message: "Couldn't load transactions. Please try again later.",
         });
     }
-    res.status(200).json({
-    message: "Transaction updated successfully",
-    })
+};
 
-    
-}
-
-const deleteTransactionController = async(req,res,next) => {
+const updateTransactionController = async (req, res) => {
     const transactionID = req.params.id;
-    const deleted = await deleteTransactionService(transactionID, req.user)
-    if (!deleted) {
-        return res.status(404).json({
-        message:"Transaction not found",
-        })
+    try {
+        const updatedTransaction = await updateTransactionService(
+            req.body,
+            transactionID,
+            req.user,
+        );
 
+        if (!updatedTransaction) {
+            return res.status(404).json({
+                message: "Transaction not found",
+            });
+        }
+        res.status(200).json({
+            message: "Transaction updated successfully",
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Couldn't update the transaction. Please try again later.",
+        });
     }
-    res.status(200).json({
-     message:"Transaction deleted successfully",
-        })
+};
 
-}
+const deleteTransactionController = async (req, res) => {
+    const transactionID = req.params.id;
+    try {
+        const deleted = await deleteTransactionService(transactionID, req.user);
+        if (!deleted) {
+            return res.status(404).json({
+                message: "Transaction not found",
+            });
+        }
+        res.status(200).json({
+            message: "Transaction deleted successfully",
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Couldn't delete the transaction. Please try again later.",
+        });
+    }
+};
 
 export {
-    createTransactionController, getTransactionsController,
-    updateTransactionController, deleteTransactionController
-}
+    createTransactionController,
+    getTransactionsController,
+    updateTransactionController,
+    deleteTransactionController,
+};
