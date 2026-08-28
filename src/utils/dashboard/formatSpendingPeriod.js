@@ -8,6 +8,7 @@ export const formatSpendingPeriod = (highestSpendingPeriod, dateFilter) => {
             return format(new Date(highestSpendingPeriod), "dd MMM, yyyy");
         case "this-year":
         case "all-time":
+        case "last-year":
             return format(new Date(`${highestSpendingPeriod}-01`), "MMM, yyyy");
         default:
             return highestSpendingPeriod;

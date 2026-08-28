@@ -9,6 +9,7 @@ export const getHighestSpending = (transactions, dateFilter) => {
             return (data = getHighestSpendingDay(transactions));
         case "this-year":
         case "all-time":
+        case "last-year":
             return (data = getHighestSpendingMonth(transactions));
         default:
             return data;

@@ -6,6 +6,7 @@ export const getHighestSpendingHeading = (dateFilter) => {
             return "Highest Spending Day";
         case "all-time":
         case "this-year":
+        case "last-year":
             return "Highest Spending Month";
         default:
             return "Highest Spending";
