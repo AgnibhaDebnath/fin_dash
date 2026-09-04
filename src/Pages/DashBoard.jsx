@@ -1,213 +1,58 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
+import DashboardCards from "@/Components/dashboard/DashboardCards";
+import IncomeExpenseChart from "@/Components/dashboard/IncomeExpenseChart";
 
-import Navbar from "../Components/navbar"
-import SideBar from "../Components/sidebar"
-import Cards from "../Components/Cards";
-import Charts from "../Components/charts";
-import Transactions from "../Components/TranSactions";
-import { generateTransactions } from "../Data/tranSactionsData";
-import Insights from "../Components/insights";
-import Footer from "../Components/footer";
+import { fetchTransactions } from "@/services/transaction.service";
+import { FilterContext } from "@/context/FilterContext";
+import ExpenseTrendChart from "@/Components/dashboard/ExpenseTrendChart";
+import ExpenseCategoryChart from "@/Components/dashboard/ExpenseCategoryChart";
+import Insights from "@/Components/dashboard/Insights";
+import { useApiError } from "@/hooks/useApiError";
 const DashBoard = () => {
-    const [role, setRole] = useState("user");
-    const [activeTab, setActiveTab] = useState("dashboard");
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-    const [transactions, setTransactions] = useState(() => {
-        const stored = localStorage.getItem("transactions");
+    console.log("Dashboard rendered");
+    const [transactions, setTransactions] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const handleApiError = useApiError();
+    const { dashboardDateFilter } = useContext(FilterContext);
 
-        if (stored) {
-            return JSON.parse(stored);
-        }
+    const params = useMemo(() => {
+        return new URLSearchParams({
+            dateFilter: dashboardDateFilter,
+        });
+    }, [dashboardDateFilter]);
 
-        const generated = generateTransactions();
-        localStorage.setItem("transactions", JSON.stringify(generated));
-        return generated;
-    });
     useEffect(() => {
-        localStorage.setItem("transactions", JSON.stringify(transactions));
-    }, [transactions]);
+        const loadTransactions = async () => {
+            try {
+                setIsLoading(true);
+                const data = await fetchTransactions(params);
 
-    const { total_income, total_expense, expense_category, monthly_expense_data, max_Category, month_having_max_expense, monthly_income_data } = useMemo(() => {
-        if (transactions.length == 0) {
-            return {
-                total_income: 0,
-                total_expense: 0,
-                expense_category: [],
-                monthly_expense_data: [],
-                monthly_income_data: []
+                setTransactions(data.transactions);
+            } catch (err) {
+                handleApiError(err);
+            } finally {
+                setIsLoading(false);
             }
-        } else if (transactions.length > 0 && !(transactions.some(
-            (t) => t.type === "expense"
-        ))) {
-            const total_income = transactions.filter((transaction) => transaction.type == "income").reduce((sum, transaction) => sum + transaction.amount, 0);
-            const monthly_income = {};
+        };
 
-            transactions.forEach((tx) => {
-
-                if (tx.type !== "income") return;
-
-
-                const date = new Date(tx.date);
-
-                const month = date.toLocaleString("en-US", { month: "short", });
-
-                const year = date.toLocaleString("en-US", { year: "numeric" })
-
-                const key = `${month}-${year}`
-                if (!monthly_income[key]) {
-                    monthly_income[key] = {
-                        month,
-                        year,
-                        income: 0
-                    }
-                }
-                monthly_income[key].income += tx.amount
-
-            })
-            const monthly_income_data = Object.values(monthly_income);
-            return {
-                total_income,
-                total_expense: 0,
-                expense_category: [],
-                monthly_expense_data: [],
-                monthly_income_data
-            }
-        }
-        const total_income = transactions.filter((transaction) => transaction.type == "income").reduce((sum, transaction) => sum + transaction.amount, 0);
-        const total_expense = transactions.filter((transaction) => transaction.type == "expense").reduce((sum, transaction) => sum + transaction.amount, 0);
-        const totalFoodExpense = transactions.filter((transaction) => transaction.category == "Food").reduce((sum, transaction) => sum + transaction.amount, 0);
-
-        const totalShopingExpense = transactions.filter((transaction) => transaction.category == "Shopping").reduce((sum, transaction) => sum + transaction.amount, 0);
-        const totalTravelExpense = transactions.filter((transaction) => transaction.category == "Travel").reduce((sum, transaction) => sum + transaction.amount, 0);
-
-        const totalMedicalExpense = transactions.filter((transaction) => transaction.category == "Medical").reduce((sum, transaction) => sum + transaction.amount, 0);
-
-        const totalEntertainmentExpense = transactions.filter((transaction) => transaction.category == "Entertainment").reduce((sum, transaction) => sum + transaction.amount, 0);
-
-        const expense_category = [
-            { name: "Food", value: totalFoodExpense },
-            { name: "Shopping", value: totalShopingExpense },
-            { name: "Travel", value: totalTravelExpense },
-            { name: "Medical", value: totalMedicalExpense },
-            { name: "Entertainment", value: totalEntertainmentExpense }
-        ];
-        const max_Category = expense_category.reduce((max, category) => category.value > max.value ? category : max);
-
-        const result = {};
-
-        transactions.forEach((tx) => {
-
-            if (tx.type !== "expense") return;
-
-
-            const date = new Date(tx.date);
-
-            const month = date.toLocaleString("en-US", { month: "short", });
-
-            const year = date.toLocaleString("en-US", { year: "numeric" })
-
-            const key = `${month}-${year}`
-            if (!result[key]) {
-                result[key] = {
-                    month,
-                    year,
-                    expense: 0
-                }
-            }
-            result[key].expense += tx.amount
-
-        })
-        const monthly_expense_data = Object.values(result);
-
-        const monthly_income = {};
-
-        transactions.forEach((tx) => {
-
-            if (tx.type !== "income") return;
-
-
-            const date = new Date(tx.date);
-
-            const month = date.toLocaleString("en-US", { month: "short", });
-
-            const year = date.toLocaleString("en-US", { year: "numeric" })
-
-            const key = `${month}-${year}`
-            if (!monthly_income[key]) {
-                monthly_income[key] = {
-                    month,
-                    year,
-                    income: 0
-                }
-            }
-            monthly_income[key].income += tx.amount
-
-        })
-        const monthly_income_data = Object.values(monthly_income);
-
-
-        const month_having_max_expense = monthly_expense_data.reduce((max, month) => month.expense > max.expense ? month : max);
-
-        return {
-            month_having_max_expense,
-            total_income,
-            total_expense,
-            expense_category,
-            monthly_expense_data,
-            monthly_income_data,
-            max_Category
-        }
-    }, [transactions])
-
-
-
-
-
-
-
-
-
-
-
+        loadTransactions();
+    }, [dashboardDateFilter, params, handleApiError]);
 
     return (
-        <div className="h-screen flex flex-col ">
-            <Navbar role={role} setRole={setRole} activeTab={activeTab} setIsSidebarOpen={setIsSidebarOpen} />
-            <div className="flex flex-1">
-                <div className="hidden md:block w-60 h-full">
-                    <SideBar setActiveTab={setActiveTab} activeTab={activeTab} />
-                </div>
-                {activeTab == "dashboard" && <>
-                    <div className="flex flex-col w-full">
-                        <Cards total_income={total_income} total_expense={total_expense} monthly_expense_data={monthly_expense_data} />
-                        <Charts expense_category={expense_category} monthly_expense_data={monthly_expense_data} monthly_income_data={monthly_income_data} total_expense={total_expense} />
-                        <Insights max_Category={max_Category} total_expense={total_expense} month_having_max_expense={month_having_max_expense} />
+        <>
+            <div className="flex flex-col w-full">
+                <DashboardCards isLoading={isLoading} transactions={transactions} />
+                <IncomeExpenseChart isLoading={isLoading} transactions={transactions} />
+                <section className="mt-9 py-4 pb-15 sm:pl-14 shadow-2xl ">
+                    <div className="w-full flex flex-col items-center min-[1350px]:flex-row min-[1350px]:gap-2 gap-10 font-[inter]">
+                        <ExpenseTrendChart transactions={transactions} />
+                        <ExpenseCategoryChart transactions={transactions} />
                     </div>
-                </>
-                }
-                {activeTab == "transactions" && <>
-                    <div className="flex flex-col items-center w-full">
-                        <Transactions role={role} transactions={transactions} setTransactions={setTransactions} />
-                        <Footer />
-                    </div>
-                </>
-                }
+                </section>
+                <Insights transactions={transactions} isLoading={isLoading} />
             </div>
+        </>
+    );
+};
 
-            {isSidebarOpen && (
-                <>
-                    <div
-                        className="fixed inset-0 bg-black opacity-30 md:hidden"
-                        onClick={() => setIsSidebarOpen(false)}
-                    ></div>
-
-                    <div className="fixed top-24 left-0 w-60 h-full bg-white shadow-md z-50 md:hidden">
-                        <SideBar setActiveTab={setActiveTab} activeTab={activeTab} setRole={setRole} role={role} />
-                    </div>
-                </>
-            )}
-        </div>
-    )
-}
-
-export default DashBoard
+export default DashBoard;
