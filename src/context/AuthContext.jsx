@@ -1,45 +1,53 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [user, setUser] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
-    const checkAuth = async () => {
+    const checkAuth = useCallback(async () => {
         try {
-
-
             const res = await fetch("http://localhost:3001/api/auth/me", {
                 method: "GET",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json"
-                }
-            })
+                    "Content-Type": "application/json",
+                },
+            });
             const data = await res.json();
 
             if (res.status == 401) {
                 setUser(null);
                 setIsAuthenticated(data.success);
-                return
+                return;
             }
 
             setUser(data.user);
-            setIsAuthenticated(data.success)
+            setIsAuthenticated(data.success);
         } catch (err) {
-
+            console.log(err);
             setUser(null);
             setIsAuthenticated(false);
-
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    }, []);
+
+    useEffect(() => {
+        const channel = new BroadcastChannel("auth");
+
+        channel.onmessage = (event) => {
+            if (event.data === "logout") {
+                setIsAuthenticated(false);
+            }
+        };
+
+        return () => channel.close();
+    }, []);
 
     const logout = async () => {
         try {
-
             const res = await fetch("http://localhost:3001/api/auth/logout", {
                 method: "POST",
                 credentials: "include",
@@ -47,35 +55,41 @@ const AuthProvider = ({ children }) => {
             if (!res.ok) {
                 throw new Error("Logout failed");
             }
+            setUser(null);
+            setIsAuthenticated(false);
             const data = await res.json();
             toast.success(data.message);
+
             setTimeout(async () => {
+                const channel = new BroadcastChannel("auth");
+                channel.postMessage("logout");
+                channel.close();
                 await checkAuth();
-            }, 2000)
+            }, 2000);
         } catch (err) {
-            console.log(err)
+            toast.error(err.message);
         }
-    }
+    };
 
     useEffect(() => {
         checkAuth();
-    }, [])
-
+    }, [checkAuth]);
 
     return (
-        <AuthContext.Provider value={{
-            user,
-            setUser,
-            isAuthenticated,
-            setIsAuthenticated,
-            loading,
-            setLoading,
-            logout,
-            checkAuth
-        }}>
+        <AuthContext.Provider
+            value={{
+                user,
+                setUser,
+                isAuthenticated,
+                setIsAuthenticated,
+                loading,
+                setLoading,
+                logout,
+                checkAuth,
+            }}
+        >
             {children}
         </AuthContext.Provider>
-    )
-
-}
-export default AuthProvider
+    );
+};
+export default AuthProvider;
