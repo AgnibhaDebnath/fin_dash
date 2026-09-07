@@ -54,7 +54,8 @@ const Login = () => {
             if (!res.ok) {
                 if (res.status === 400) {
                     const { errors } = data;
-                    return setErrors(errors);
+                    setErrors(errors);
+                    return;
                 }
 
                 const error = new Error(data.message);
