@@ -3,7 +3,7 @@ import { getMonthlyIncomeExpense } from "./getMonthlyIncomeExpense";
 export const getHighestSpendingMonth = (transactions) => {
     const monthlyIncomeExpenseData = getMonthlyIncomeExpense(transactions);
 
-    let highestSpendingPeriod;
+    let highestSpendingPeriod=null;
     let highestPeriodAmount = 0;
     monthlyIncomeExpenseData.forEach((item) => {
         if (Number(item.expense) > highestPeriodAmount) {
