@@ -60,12 +60,10 @@ const AuthProvider = ({ children }) => {
             const data = await res.json();
             toast.success(data.message);
 
-            setTimeout(async () => {
-                const channel = new BroadcastChannel("auth");
-                channel.postMessage("logout");
-                channel.close();
-                await checkAuth();
-            }, 2000);
+            const channel = new BroadcastChannel("auth");
+            channel.postMessage("logout");
+            channel.close();
+            await checkAuth();
         } catch (err) {
             toast.error(err.message);
         }
