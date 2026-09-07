@@ -28,8 +28,8 @@ const ExpenseTrendChart = ({ transactions }) => {
     return (
         <>
             {filteredExpenseTrendData?.length > 0 ? (
-                <div className="w-full min-[1350px]:w-3/5 h-83 pl-2">
-                    <h3 className="text-gray-700 font-bold mb-8 text-center text-2xl">
+                <div className="w-full min-[1350px]:w-3/5 h-85 ">
+                    <h3 className="text-gray-700 font-bold  text-center text-2xl mb-2">
                         Expense Trend
                     </h3>
                     <ResponsiveContainer
@@ -43,22 +43,22 @@ const ExpenseTrendChart = ({ transactions }) => {
                                 tickMargin={8}
                                 dataKey={
                                     dashboardDateFilter === "this-month" ||
-                                    dashboardDateFilter === "last-month" ||
-                                    dashboardDateFilter === "this-week"
+                                        dashboardDateFilter === "last-month" ||
+                                        dashboardDateFilter === "this-week"
                                         ? "day"
                                         : dashboardDateFilter === "all-time"
-                                          ? "year"
-                                          : "month"
+                                            ? "year"
+                                            : "month"
                                 }
                                 tickFormatter={(value) =>
                                     dashboardDateFilter === "this-month" ||
-                                    dashboardDateFilter === "last-month"
+                                        dashboardDateFilter === "last-month"
                                         ? format(new Date(`${value}`), "dd")
                                         : dashboardDateFilter === "this-week"
-                                          ? format(new Date(`${value}`), "EEE")
-                                          : dashboardDateFilter === "all-time"
-                                            ? format(new Date(`${value}-01-01`), "yyyy")
-                                            : format(new Date(`${value}-01`), "MMM")
+                                            ? format(new Date(`${value}`), "EEE")
+                                            : dashboardDateFilter === "all-time"
+                                                ? format(new Date(`${value}-01-01`), "yyyy")
+                                                : format(new Date(`${value}-01`), "MMM")
                                 }
                             />
 
@@ -70,13 +70,13 @@ const ExpenseTrendChart = ({ transactions }) => {
                                 contentStyle={{ borderRadius: "12px", padding: "15px" }}
                                 labelFormatter={(value) =>
                                     dashboardDateFilter === "this-month" ||
-                                    dashboardDateFilter === "last-month"
+                                        dashboardDateFilter === "last-month"
                                         ? format(new Date(`${value}`), "dd MMM, yyyy")
                                         : dashboardDateFilter === "this-week"
-                                          ? format(new Date(`${value}`), "dd MMM (EEE)")
-                                          : dashboardDateFilter === "all-time"
-                                            ? format(new Date(`${value}-01`), "yyyy")
-                                            : format(new Date(`${value}-01`), "MMM, yyyy")
+                                            ? format(new Date(`${value}`), "dd MMM (EEE)")
+                                            : dashboardDateFilter === "all-time"
+                                                ? format(new Date(`${value}-01`), "yyyy")
+                                                : format(new Date(`${value}-01`), "MMM, yyyy")
                                 }
                                 formatter={(value, name) => [
                                     `₹${value}`,

@@ -23,7 +23,7 @@ const TransactionToolbar = ({ setIsFormOpen }) => {
     return (
         <section aria-label="Transaction Controls Filter Toolbar" className="w-full mt-35">
             <div className="px-5 min-[400px]:px-10 flex justify-between items-center gap-y-4 flex-wrap">
-                <div className="flex pr-10 items-center flex-wrap gap-y-4 gap-x-4 sm:gap-x-6  lg:gap-x-10">
+                <div className="flex pr-8 min-[360px]:pr-10 items-center flex-wrap gap-y-4 gap-x-4 sm:gap-x-6  lg:gap-x-10">
                     <div className="relative">
                         <FaSearch className="absolute top-[.72rem] left-[1.1rem] text-gray-400" />
                         <input
@@ -52,7 +52,7 @@ const TransactionToolbar = ({ setIsFormOpen }) => {
                             {transactionFilters.category === "all categories"
                                 ? "Categories"
                                 : transactionFilters.category?.charAt(0).toUpperCase() +
-                                  transactionFilters.category.slice(1)}
+                                transactionFilters.category.slice(1)}
                         </label>
                         <MdArrowDropDown
                             size={30}
@@ -79,7 +79,7 @@ const TransactionToolbar = ({ setIsFormOpen }) => {
                             {transactionFilters.type === "all types"
                                 ? "Types"
                                 : transactionFilters.type?.charAt(0).toUpperCase() +
-                                  transactionFilters.type.slice(1)}
+                                transactionFilters.type.slice(1)}
                         </label>
                         <MdArrowDropDown
                             size={30}
