@@ -6,20 +6,18 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
+
     const checkAuth = useCallback(async () => {
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
                 method: "GET",
                 credentials: "include",
-                headers: {
-                    "Content-Type": "application/json",
-                },
             });
             const data = await res.json();
 
-            if (res.status == 401) {
+            if (res.status === 401) {
                 setUser(null);
-                setIsAuthenticated(data.success);
+                setIsAuthenticated(false);
                 return;
             }
 
@@ -63,7 +61,6 @@ const AuthProvider = ({ children }) => {
             const channel = new BroadcastChannel("auth");
             channel.postMessage("logout");
             channel.close();
-            await checkAuth();
         } catch (err) {
             toast.error(err.message);
         }
@@ -72,6 +69,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         checkAuth();
     }, [checkAuth]);
+
 
     return (
         <AuthContext.Provider
