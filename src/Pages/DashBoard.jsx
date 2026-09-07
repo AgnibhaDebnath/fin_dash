@@ -28,10 +28,9 @@ const DashBoard = () => {
                 const data = await fetchTransactions(params);
 
                 setTransactions(data.transactions);
+                setIsLoading(false);
             } catch (err) {
                 handleApiError(err);
-            } finally {
-                setIsLoading(false);
             }
         };
 
