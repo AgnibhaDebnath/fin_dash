@@ -42,8 +42,8 @@ const DashBoard = () => {
             <div className="flex flex-col w-full">
                 <DashboardCards isLoading={isLoading} transactions={transactions} />
                 <IncomeExpenseChart isLoading={isLoading} transactions={transactions} />
-                <section className="mt-9 py-4 pb-15 sm:pl-14 shadow-2xl ">
-                    <div className="w-full flex flex-col items-center min-[1350px]:flex-row min-[1350px]:gap-2 gap-10 font-[inter]">
+                <section className="py-10 mt-10 pr-5 shadow-2xl ">
+                    <div className="w-full flex flex-col items-center min-[1350px]:flex-row min-[1350px]:gap-x-2 gap-y-10 font-[inter]">
                         <ExpenseTrendChart transactions={transactions} />
                         <ExpenseCategoryChart transactions={transactions} />
                     </div>
