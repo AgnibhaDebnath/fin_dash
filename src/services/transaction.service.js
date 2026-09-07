@@ -1,7 +1,7 @@
 export const fetchTransactions = async (params = "") => {
     const url = params
-        ? `http://localhost:3001/api/transaction?${params}`
-        : `http://localhost:3001/api/transaction`;
+        ? `${import.meta.env.VITE_API_URL}/api/transaction?${params}`
+        : `${import.meta.env.VITE_API_URL}/api/transaction`;
 
     const res = await fetch(url, {
         credentials: "include",

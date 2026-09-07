@@ -35,7 +35,7 @@ const TransactionForm = ({
         category: [],
         date: [],
     });
-
+    console.log(import.meta.env.VITE_API_URL);
     const categoryInfo = categories.find((category) => category.value === transactionCategory);
     const typesInfo = transactionTypes.find((type) => type.value === transactionType);
     const CategoryIcon = categoryInfo?.icon;
@@ -111,8 +111,8 @@ const TransactionForm = ({
         try {
             setFormSubmitted(true);
             const url = editingTransaction
-                ? `http://localhost:3001/api/transaction/${editingTransaction._id}`
-                : "http://localhost:3001/api/transaction";
+                ? `${import.meta.env.VITE_API_URL}/api/transaction/${editingTransaction._id}`
+                : `${import.meta.env.VITE_API_URL}/api/transaction`;
 
             const method = editingTransaction ? "PUT" : "POST";
 

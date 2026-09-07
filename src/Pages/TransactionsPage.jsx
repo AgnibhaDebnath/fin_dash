@@ -74,7 +74,7 @@ const TransactionsPage = () => {
     const handleDeleteTransaction = async () => {
         try {
             const res = await fetch(
-                `http://localhost:3001/api/transaction/${selectedTransaction._id}`,
+                `${import.meta.env.VITE_API_URL}/api/transaction/${selectedTransaction._id}`,
                 {
                     credentials: "include",
                     method: "DELETE",
