@@ -14,7 +14,7 @@ const signupController = async (req, res) => {
         res.cookie("token", user.token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000,
         });
         res.status(201).json({
@@ -41,7 +41,7 @@ const loginController = async (req, res) => {
         res.cookie("token", result.token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000,
         });
         res.status(200).json({
@@ -69,12 +69,12 @@ const getCurrentUser = async (req, res) => {
     }
 };
 
-const logoutController = (req, res) => {
+const logoutController = (res) => {
     try {
         res.clearCookie("token", {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000,
         });
 
