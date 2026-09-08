@@ -41,46 +41,50 @@ const FilterDropdown = ({
                                 return null;
                             }
                             return (
-                                <motion.button
-                                    key={item.id}
-                                    variants={itemVariants}
-                                    type="button"
-                                    className=" w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer flex items-center"
-                                    onClick={() => {
-                                        if (label === "category") {
-                                            setTransactionFilters((prev) => ({
-                                                ...prev,
-                                                category: item.value,
-                                            }));
-                                            setToolbarDropdown(null);
-                                        } else if (label === "type") {
-                                            setTransactionFilters((prev) => ({
-                                                ...prev,
-                                                type: item.value,
-                                            }));
-                                            setToolbarDropdown(null);
-                                        } else if (label === "transaction-date-filter") {
-                                            setTransactionFilters((prev) => ({
-                                                ...prev,
-                                                dateFilter: item.value,
-                                            }));
-                                            setToolbarDropdown(null);
-                                        } else if (label === "category-form") {
-                                            handleCategoryChange(item.value);
-                                            setFormDropdown(null);
-                                        } else if (label === "type-form") {
-                                            handleTypeChange(item.value);
-                                            handleCategoryChange("all categories");
-                                            setFormDropdown(null);
-                                        } else if (label === "dashboard-date-filter") {
-                                            setDashboardDateFilter(item.value);
-                                            setDashboardFilterDropdown(null);
-                                        }
-                                    }}
-                                >
-                                    <Icon className={` ${item.color} inline mr-2`} size={18} />
-                                    {item.label}
-                                </motion.button>
+                                <>
+
+                                    <motion.button
+                                        key={item.id}
+                                        variants={itemVariants}
+                                        type="button"
+                                        className=" w-full px-4 py-2 text-left hover:bg-gray-100 cursor-pointer flex items-center font-medium"
+                                        onClick={() => {
+                                            if (label === "category") {
+                                                setTransactionFilters((prev) => ({
+                                                    ...prev,
+                                                    category: item.value,
+                                                }));
+                                                setToolbarDropdown(null);
+                                            } else if (label === "type") {
+                                                setTransactionFilters((prev) => ({
+                                                    ...prev,
+                                                    type: item.value,
+                                                }));
+                                                setToolbarDropdown(null);
+                                            } else if (label === "transaction-date-filter") {
+                                                setTransactionFilters((prev) => ({
+                                                    ...prev,
+                                                    dateFilter: item.value,
+                                                }));
+                                                setToolbarDropdown(null);
+                                            } else if (label === "category-form") {
+                                                handleCategoryChange(item.value);
+                                                setFormDropdown(null);
+                                            } else if (label === "type-form") {
+                                                handleTypeChange(item.value);
+                                                handleCategoryChange("all categories");
+                                                setFormDropdown(null);
+                                            } else if (label === "dashboard-date-filter") {
+                                                setDashboardDateFilter(item.value);
+                                                setDashboardFilterDropdown(null);
+                                            }
+                                        }}
+                                    >
+                                        <Icon className={` ${item.color} inline mr-2`} size={18} />
+                                        {item.label}
+                                    </motion.button>
+                                    <hr />
+                                </>
                             );
                         })}
                     </motion.div>

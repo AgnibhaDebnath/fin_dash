@@ -108,7 +108,7 @@ const PublicFooter = ({ scrollHandler }) => {
                 {/* Bottom Section */}
                 <div className="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-sm text-slate-500">
-                        © {new Date().getFullYear()} ExpenseFlow. All rights reserved.
+                        © {new Date().getFullYear()} Expense<span className="text-indigo-600">Flow</span>. All rights reserved.
                     </p>
 
                     <div className="flex gap-6">
