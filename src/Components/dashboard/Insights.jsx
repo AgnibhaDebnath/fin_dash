@@ -22,9 +22,9 @@ const Insights = ({ transactions, isLoading }) => {
     const Icon = categoryInfo?.icon;
     return (
         <section className="w-full flex flex-col  justify-center mb-5 font-[inter]">
-            <artical className="w-full flex justify-center">
+            <article className="w-full flex justify-center">
                 <h1 className="text-gray-800 text-3xl font-bold my-8">Summary</h1>
-            </artical>
+            </article>
             <div className="flex justify-center flex-col min-[1000px]:flex-row pl-0 min-[490px]:pl-14 gap-4 min-[490px]:pr-3 pr-0">
                 <div className="w-full flex justify-center">
                     <div className="w-10/11 min-[1000px]:w-full shadow-md hover:shadow-lg rounded-2xl my-2 py-4 flex flex-col justify-center items-center">
