@@ -1,85 +1,307 @@
-# FinDash - Expense Tracker Dashboard
-A responsive dashboard to track income and expenses with insights.
+# ExpenseFlow
 
-![dashboard](https://github.com/user-attachments/assets/21740e9f-c4a6-47ab-a719-97837a7b9df7)
+ExpenseFlow is a full-stack personal expense management application that helps users track income and expenses, manage transactions, and understand their spending through interactive dashboards and insights.
 
+## Screenshots
 
-## 📸 Screenshots
-### DashBoard
-![dashboard](https://github.com/user-attachments/assets/1e3c6279-579e-418c-aed6-379e48d1ba68)
+### Dashboard
 
+#### Overview
+<img width="1900" height="906" alt="dashboardPreviewCurrent" src="https://github.com/user-attachments/assets/bde0f87c-d0e5-4824-9ac2-3ba6e328be88" />
 
-### 💰 Transactions
+#### Analytics
+<img width="1598" height="592" alt="dashboardAnalysis" src="https://github.com/user-attachments/assets/86577375-bd9e-4c0b-90d5-54f1f20c89ce" />
 
-![Transaction_screenshort](https://github.com/user-attachments/assets/01ccf549-034c-4a0f-b820-d51307b7fb11)
+#### Insights
+<img width="1588" height="327" alt="dashboardInsights" src="https://github.com/user-attachments/assets/050a8c43-b225-4f05-8e2d-55c065457ac5" />
 
+### Transactions
+<img width="1905" height="907" alt="transactions" src="https://github.com/user-attachments/assets/f8dea48a-3071-4f26-bdaa-bbca0185fc47" />
 
-### 📈 Insights
-<img width="1599" height="368" alt="insights" src="https://github.com/user-attachments/assets/a27a2722-d8d5-4c16-aa7d-650aa1bdbdf1" />
+## Features
 
-## ✨ Features
-### 📊 Dashboard Overview
-Displays a summary of total income, expenses, and balance in a clean and intuitive layout.
+### Authentication
+- User registration and login
+- JWT-based authentication
+- Protected routes
+- Secure authentication state management
+- Logout functionality
 
-### 💰 Transaction Management
-Add, view, and manage income and expense records efficiently.
+### Transaction Management
+- Add income and expense transactions
+- Edit transactions
+- Delete transactions
+- Transaction validation
+- Search transactions
+- Filter transactions by:
+  - Type
+  - Category
+  - Date
+- Pagination for transaction records
 
-### 📄 Pagination Support
-Transactions are divided into pages to improve performance and make large datasets easier to navigate.
-### 🔍 Filtering by Type
-Easily filter transactions based on type (income or expense) for better analysis.
+### Dashboard & Analytics
+- Total income
+- Total expenses
+- Current balance
+- Income vs. expense visualization
+- Expense trend analysis
+- Expense distribution by category
+- Highest spending month
+- Top spending category
+- Responsive dashboard
 
-### 🔎 Search by Category
-Quickly find transactions by searching categories, improving accessibility and usability.
+### User Experience
+- Responsive design
+- Form validation
+- User-friendly error handling
+- Toast notifications
+- Responsive pagination controls
+- Improved filtering and dashboard experience
 
-### 📈 Insights & Analytics
-- 📊 Bar chart showing monthly income vs expense trends
-  
-- 📉 Line chart showing monthly expense trends
+### Testing & Code Quality
+- Unit testing with Vitest
+- Environment variable configuration
+- Git-based version control
+- GitHub Actions CI workflow
 
-- 🥧 Pie chart visualizing expense distribution by category
+---
 
-- 📅 Highlights highest spending month
+## Tech Stack
 
-- 🏷️ Displays top spending category
+### Frontend
+- React
+- React Router
+- Zod
+- React Toastify
+- Charting library
+- CSS
 
-## 📱 Responsive Design
-Fully optimized for mobile, tablet, and desktop screens.
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT
+- Zod
 
-## 🎨 Clean UI/UX
-Simple, modern interface focused on usability and user experience.
+### Testing
+- Vitest
 
-## 🧠 Approach
+### DevOps
+- Git
+- GitHub
+- GitHub Actions
 
-- Built using a component-based architecture for better scalability and reusability  
-- Managed application state using useState  
-- Implemented pagination to efficiently handle large transaction datasets  
-- Designed reusable components for transactions, charts, and filters  
-- Used chart libraries to visualize monthly expenses and category distribution  
-- Ensured responsive design using Tailwind CSS
-  
-## 🛠️ Tech Stack
+---
 
-- Frontend: React.js  
-- Styling: Tailwind CSS  
-- Charts:  Recharts
-- State Management: useState  
-- Build Tool: Vite
-  
-## ⚙️ Setup Instructions
+## Application Architecture
+
+ExpenseFlow follows a layered architecture to keep the backend maintainable and separate different responsibilities.
+
+```text
+Client
+  ↓
+React Frontend
+  ↓
+REST API
+  ↓
+Express Routes
+  ↓
+Middleware
+  ↓
+Controllers
+  ↓
+Services
+  ↓
+MongoDB
+```
+
+## Project Structure
+
+```text
+ExpenseFlow/
+├── .github/                  # GitHub Actions workflows
+│
+├── backend/
+│   ├── src/
+│   │   ├── config/           # Database configuration
+│   │   ├── middlewares/      # Authentication and request middleware
+│   │   └── modules/
+│   │       ├── auth/         # Authentication module
+│   │       └── transaction/  # Transaction module
+│   │
+│   ├── app.js                # Express application configuration
+│   └── server.js             # Server entry point
+│
+├── src/
+│   ├── Components/           # Reusable UI components
+│   ├── Pages/                # Application pages
+│   ├── services/             # API/service layer
+│   ├── context/              # React context
+│   ├── hooks/                # Custom React hooks
+│   ├── utils/                # Utility functions
+│   ├── constants/            # Application constants
+│   ├── layouts/              # Layout components
+│   ├── lib/                  # Library/configuration utilities
+│   ├── assets/               # Static assets
+│   ├── animations/           # Animation definitions
+│   ├── mock/                 # Mock data
+│   ├── App.jsx               # Root React component
+│   └── main.jsx              # Application entry point
+│
+├── tests/                    # Automated tests
+├── .env.example              # Environment variable template
+├── .gitignore
+└── README.md
+```
+## Getting Started
+
+Follow the steps below to run ExpenseFlow locally.
+
+### Prerequisites
+
+Make sure the following are installed on your system:
+
+- [Node.js](https://nodejs.org/)
+- npm
+- MongoDB
+
+You can verify the installations with:
 
 ```bash
-- git clone https://github.com/AgnibhaDebnath/fin_dash
-- cd fin_dash
-- npm install
-- npm run dev
-
+node --version
+npm --version
 ```
-## 📁 Folder Structure
+### Clone the Repository
+Clone the ExpenseFlow repository and navigate to the project directory:
+``` bash
+git clone https://github.com/AgnibhaDebnath/ExpenseFlow.git
+cd ExpenseFlow
+```
+### Install Dependencies
+Install the frontend dependencies from the project root:
+```bash
+npm install
+```
+Then install the backend dependencies:
+```bash
+cd backend
+npm install
+```
+After installation, return to the project root:
+```bash
+cd..
+```
+## Environment Variables
 
-- src/
-- ├── components/
-- ├── pages/
-- ├── assets/
-- ├── Data/
-- └── App.jsx
+ExpenseFlow uses environment variables for both the frontend and backend.
+
+#### Frontend
+
+Create the frontend environment file using `.env.example` as a reference.
+
+#### Backend
+
+Create a `.env` file inside the `backend` directory using `backend/.env.example` as a reference.
+
+Update the environment variables with your local configuration.
+
+> Never commit environment files containing sensitive credentials or secrets.
+
+## Running the Application
+### Start the Backend
+
+From the backend directory, run:
+```bash
+cd backend
+npm run dev
+```
+
+### Start the Frontend
+
+Open another terminal, navigate to the project root, and run:
+```bash
+npm run dev
+```
+The frontend development server will provide a local URL in the terminal.
+
+## Access the Application
+
+Open the local URL provided by the frontend development server in your browser.
+
+You can now register a new account or log in to start using ExpenseFlow.
+
+## Testing
+
+ExpenseFlow uses Vitest for automated testing.
+
+### Run Tests
+
+To run the test suite in watch mode:
+
+```bash
+npm run test
+```
+To run the tests once:
+```
+npm run test:run
+```
+The test suite covers important application and business logic to help ensure that changes do not introduce regressions.
+
+## CI
+
+ExpenseFlow uses GitHub Actions to automate code quality checks.
+
+The CI workflow runs automatically on pushes and pull requests and performs:
+
+- Dependency installation
+- Prettier formatting check
+- ESLint checks
+- Automated tests with Vitest
+
+This helps maintain consistent code formatting, catch linting issues, and ensure that existing functionality continues to work.
+
+## Security
+
+ExpenseFlow implements several security practices:
+
+- JWT-based authentication
+- Protected API routes
+- Authentication middleware
+- Server-side input validation
+- Password hashing using bcrypt
+- User-specific access to transactions
+- Environment variables for sensitive configuration
+- CORS configuration
+
+User passwords are securely hashed using bcrypt before being stored in the database. Plain-text passwords are never stored.
+
+## Version
+
+**Current Version:** `v1.0.0`
+
+### v1.0.0 — Initial Stable Release
+
+- User registration and login
+- JWT-based authentication
+- Transaction management
+- Search, filtering, and pagination
+- Dashboard analytics
+- Financial insights
+- Form validation
+- Responsive UI
+- Automated testing with Vitest
+- GitHub Actions CI
+
+## Future Improvements
+
+- Recurring transactions
+- Budget management
+- Budget alerts
+- Transaction export
+- Email notifications
+- Advanced financial insights
+- Dark mode
+
+## License
+
+This project is developed for educational and portfolio purposes.
